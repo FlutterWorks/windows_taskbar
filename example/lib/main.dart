@@ -30,42 +30,42 @@ class _MyAppState extends State<MyApp> {
     WindowsTaskbar.setThumbnailToolbar(
       [
         ThumbnailToolbarButton(
-          ThumbnailToolbarAssetIcon('res/folder.ico'),
+          ThumbnailToolbarAssetIcon('assets/folder.ico'),
           'Button 1',
           () {
             setState(() {
               lastTooltip = 'Button 1';
-              lastIcon = 'res/folder.ico';
+              lastIcon = 'assets/folder.ico';
             });
           },
         ),
         ThumbnailToolbarButton(
-          ThumbnailToolbarAssetIcon('res/pictures.ico'),
+          ThumbnailToolbarAssetIcon('assets/pictures.ico'),
           'Button 2',
           () {
             setState(() {
               lastTooltip = 'Button 2';
-              lastIcon = 'res/pictures.ico';
+              lastIcon = 'assets/pictures.ico';
             });
           },
         ),
         ThumbnailToolbarButton(
-          ThumbnailToolbarAssetIcon('res/sync.ico'),
+          ThumbnailToolbarAssetIcon('assets/sync.ico'),
           'Button 3',
           () {
             setState(() {
               lastTooltip = 'Button 3';
-              lastIcon = 'res/sync.ico';
+              lastIcon = 'assets/sync.ico';
             });
           },
         ),
         ThumbnailToolbarButton(
-          ThumbnailToolbarAssetIcon('res/music.ico'),
+          ThumbnailToolbarAssetIcon('assets/music.ico'),
           'Button 4',
           () {
             setState(() {
               lastTooltip = 'Button 4';
-              lastIcon = 'res/music.ico';
+              lastIcon = 'assets/music.ico';
             });
           },
         ),
@@ -142,7 +142,7 @@ class _MyAppState extends State<MyApp> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
                     Text(
-                      'WindowsTaskbar.clearThumbnailToolbar',
+                      'WindowsTaskbar.resetThumbnailToolbar',
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                       ),
@@ -154,8 +154,8 @@ class _MyAppState extends State<MyApp> {
                       height: 12.0,
                     ),
                     ElevatedButton(
-                      onPressed: WindowsTaskbar.clearThumbnailToolbar,
-                      child: Text('Clear'),
+                      onPressed: WindowsTaskbar.resetThumbnailToolbar,
+                      child: Text('Reset'),
                     ),
                   ],
                 ),
@@ -311,6 +311,203 @@ class _MyAppState extends State<MyApp> {
                       onChanged: (value) {
                         WindowsTaskbar.setThumbnailTooltip(value);
                       },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Card(
+              elevation: 2.0,
+              margin: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 8.0,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'WindowsTaskbar.setFlashTaskbarAppIcon',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const Text(
+                      'Flashes app icon on the taskbar.\nGenerally used to draw user attention when something needs to be approved/rejected or fixed manually.\n\nA lot of options are available to configure the behaviour of this method.',
+                    ),
+                    const SizedBox(
+                      height: 12.0,
+                    ),
+                    ElevatedButton(
+                      onPressed: () => WindowsTaskbar.setFlashTaskbarAppIcon(
+                        mode: TaskbarFlashMode.all,
+                        flashCount: 500,
+                        timeout: const Duration(milliseconds: 100),
+                      ),
+                      child: const Text('Start Flashing'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Card(
+              elevation: 2.0,
+              margin: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 8.0,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      'WindowsTaskbar.resetFlashTaskbarAppIcon',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      'Stops flashing the taskbar app icon.\nUndoes the results achieved by [WindowsTaskbar.setFlashTaskbarAppIcon].',
+                    ),
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    ElevatedButton(
+                      onPressed: WindowsTaskbar.resetFlashTaskbarAppIcon,
+                      child: Text('Stop Flashing'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Card(
+              elevation: 2.0,
+              margin: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 8.0,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'WindowsTaskbar.setOverlayIcon',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const Text(
+                      'Set icon on top of taskbar app icon.',
+                    ),
+                    const SizedBox(
+                      height: 12.0,
+                    ),
+                    ElevatedButton(
+                      onPressed: () => WindowsTaskbar.setOverlayIcon(
+                        ThumbnailToolbarAssetIcon('assets/red_slash.ico'),
+                        tooltip: 'Stop',
+                      ),
+                      child: const Text('Set overlay icon'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Card(
+              elevation: 2.0,
+              margin: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 8.0,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'WindowsTaskbar.resetOverlayIcon',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const Text(
+                      'Resets (hides) overlay icon that set by [WindowsTaskbar.setOverlayIcon].',
+                    ),
+                    const SizedBox(
+                      height: 12.0,
+                    ),
+                    ElevatedButton(
+                      onPressed: () => WindowsTaskbar.resetOverlayIcon(),
+                      child: const Text('Reset overlay icon'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Card(
+              elevation: 2.0,
+              margin: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 8.0,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'WindowsTaskbar.setWindowTitle',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const Text(
+                      'Sets window title.',
+                    ),
+                    const SizedBox(
+                      height: 12.0,
+                    ),
+                    TextField(
+                      decoration: const InputDecoration(
+                        label: Text('Enter a title'),
+                      ),
+                      onChanged: (value) {
+                        WindowsTaskbar.setWindowTitle(value);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Card(
+              elevation: 2.0,
+              margin: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 8.0,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      'WindowsTaskbar.resetWindowTitle',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      'Resets window title.',
+                    ),
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    ElevatedButton(
+                      onPressed: WindowsTaskbar.resetWindowTitle,
+                      child: Text('Reset'),
                     ),
                   ],
                 ),
