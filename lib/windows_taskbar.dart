@@ -5,9 +5,8 @@
 /// Use of this source code is governed by MIT license that can be found in the LICENSE file.
 
 import 'dart:io';
-
-import 'package:flutter/services.dart';
 import 'package:path/path.dart';
+import 'package:flutter/services.dart';
 
 /// Sets progress mode.
 const String _kSetProgressMode = 'SetProgressMode';
@@ -338,6 +337,14 @@ class WindowsTaskbar {
   static Future<void> resetWindowTitle() {
     return _kChannel.invokeMethod(
       _kResetWindowTitle,
+      {},
+    );
+  }
+
+  /// Returns whether taskbar is visible (in case of auto-hide).
+  static Future<bool> isTaskbarVisible() async {
+    return await _kChannel.invokeMethod(
+      'IsTaskbarVisible',
       {},
     );
   }
